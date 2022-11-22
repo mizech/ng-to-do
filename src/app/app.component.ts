@@ -31,8 +31,8 @@ export class AppComponent {
     this.tasks.splice(index, 1);
   }
 
-  markAsDone(task: Task) {
-    task.isDone = true;
+  toogleIsDone(task: Task) {
+    task.isDone = !task.isDone;
   }
 }
 
