@@ -22,17 +22,13 @@ export class AppComponent {
   }
 
   remove(index: number) {
-    var userConfirm = confirm(`Do you want to remove the following task: ${this.tasks[0]}`);
+    var userConfirm = confirm(`Do you want to remove the following task: ${this.tasks[index].title}`);
 
     if (!userConfirm) {
       return;
     }
 
     this.tasks.splice(index, 1);
-  }
-
-  toogleIsDone(task: Task) {
-    task.isDone = !task.isDone;
   }
 }
 
