@@ -8,10 +8,5 @@ import { Task } from './Task';
 })
 export class AppComponent {
   title = "To Do List";
-
-  reactToEvent() {
-    console.log("Parent reaction");
-    alert("Parent has reacted to Event!");
-  }
 }
 

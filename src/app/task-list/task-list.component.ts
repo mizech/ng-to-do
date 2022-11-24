@@ -10,9 +10,6 @@ export class TaskListComponent implements OnInit {
 
   constructor() { }
 
-  @Output()
-  someEvent = new EventEmitter();
-
   ngOnInit(): void {
   }
   
@@ -37,10 +34,5 @@ export class TaskListComponent implements OnInit {
     }
 
     this.tasks.splice(index, 1);
-  }
-
-  callParent() {
-    console.log("Clicked button");
-    this.someEvent.emit();
   }
 }
