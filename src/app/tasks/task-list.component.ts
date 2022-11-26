@@ -2,7 +2,7 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Task } from '../Task';
 import { ActivatedRoute } from '@angular/router';
 import { NgForm } from '@angular/forms';
-import { NewTask } from './NewTask';
+import { NewTask } from './new-task.dto';
 
 @Component({
   selector: 'app-task-list',
