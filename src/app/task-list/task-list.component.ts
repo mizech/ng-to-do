@@ -1,6 +1,7 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Task } from '../Task';
 import { ActivatedRoute } from '@angular/router';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-task-list',
@@ -26,9 +27,17 @@ export class TaskListComponent implements OnInit {
     new Task("Go for a run", false)
   ];
 
-  add() {
+  add(taskNgForm: NgForm) {
+    if (taskNgForm.touched == false) {
+      return;
+    }
+
+    if (taskNgForm.valid == false) {
+      return;
+    }
+
     this.tasks.push(new Task(this.newTaskTitle));
-    this.newTaskTitle = ""
+    taskNgForm.reset({date: this.date});
   }
 
   remove(index: number) {

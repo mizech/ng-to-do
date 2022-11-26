@@ -56,6 +56,10 @@
     cursor: pointer;
     height: 100%;
   }
+  button:disabled {
+    background-color: gray;
+  }
+
   .done-button {
     background-color: #242424;
     color: #ffffff;
@@ -107,4 +111,13 @@
 
   .mat-button, .mat-icon-button, .mat-stroked-button {
     color: black !important;
+  }
+
+  p {
+    line-height: 50px;
+  }
+
+  .validation-error {
+    color: rgb(193, 12, 12);
+    margin-bottom: 10px;
   }

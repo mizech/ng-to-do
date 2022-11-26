@@ -1,14 +1,20 @@
 <div class="container">
     <div class="todo-list">
-      <div class="input-group">
-        <input [matDatepicker]="picker" [(ngModel)]="date" />
-        <mat-datepicker-toggle [for]="picker"></mat-datepicker-toggle>
-        <mat-datepicker #picker></mat-datepicker>
-      </div>
-      <div class="input-group">
-        <input type="text" placeholder="Todo" [(ngModel)]="newTaskTitle" #newTask>
-        <button class="add-button" (click)="add()">+</button>
-      </div>
+      <form (ngSubmit)="add(taskNgForm);" #taskNgForm="ngForm" #form>
+        <div class="input-group">
+          <input readonly name="date" [matDatepicker]="picker" [(ngModel)]="date" />
+          <mat-datepicker-toggle [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </div>
+        <div class="input-group">
+          <input #newTask="ngModel" required minlength="4" name="taskTitle" type="text" placeholder="Todo" [(ngModel)]="newTaskTitle" #newTaskInput>
+          <button [disabled]="!form.checkValidity()" class="button button-primary">+</button>
+        </div>
+        <div *ngIf="newTask.invalid && (newTask.touched || newTask.dirty)" class="validation-error">
+          <div *ngIf="newTask.errors?.['required']">Task title is required.</div>
+          <div *ngIf="newTask.errors?.['minlength']">At least 4 chars required.</div>
+        </div>
+      </form>
       <table>
         <tr *ngFor="let task of tasks; let i = index;" class="{{i % 2 == 0 ? 'even' : 'odd'}}">
           <td>
