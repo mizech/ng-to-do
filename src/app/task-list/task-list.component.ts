@@ -2,6 +2,7 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Task } from '../Task';
 import { ActivatedRoute } from '@angular/router';
 import { NgForm } from '@angular/forms';
+import { NewTask } from './NewTask';
 
 @Component({
   selector: 'app-task-list',
@@ -10,12 +11,11 @@ import { NgForm } from '@angular/forms';
 })
 export class TaskListComponent implements OnInit {
   constructor(private route: ActivatedRoute) { }
-  date: Date = new Date();
-  newTaskTitle = "";
+  newTask: NewTask = new NewTask();
 
   ngOnInit(): void {
-    this.date = new Date(this.route.snapshot.params["date"]);
-    console.log(this.date);
+    var strDate = this.route.snapshot.params["date"];
+    this.newTask = new NewTask(this.newTask.title, new Date(strDate));
   }
   
   tasks : Task[] = [
@@ -36,8 +36,8 @@ export class TaskListComponent implements OnInit {
       return;
     }
 
-    this.tasks.push(new Task(this.newTaskTitle));
-    taskNgForm.reset({date: this.date});
+    this.tasks.push(new Task(this.newTask.title));
+    taskNgForm.reset({date: this.newTask.date});
   }
 
   remove(index: number) {
@@ -50,3 +50,5 @@ export class TaskListComponent implements OnInit {
     this.tasks.splice(index, 1);
   }
 }
+
+

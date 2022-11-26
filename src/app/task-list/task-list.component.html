@@ -2,17 +2,17 @@
     <div class="todo-list">
       <form (ngSubmit)="add(taskNgForm);" #taskNgForm="ngForm" #form>
         <div class="input-group">
-          <input readonly name="date" [matDatepicker]="picker" [(ngModel)]="date" />
+          <input readonly name="date" [matDatepicker]="picker" [(ngModel)]="newTask.date" />
           <mat-datepicker-toggle [for]="picker"></mat-datepicker-toggle>
           <mat-datepicker #picker></mat-datepicker>
         </div>
         <div class="input-group">
-          <input #newTask="ngModel" required minlength="4" name="taskTitle" type="text" placeholder="Todo" [(ngModel)]="newTaskTitle" #newTaskInput>
+          <input #newTaskNgModel="ngModel" required minlength="4" name="taskTitle" type="text" placeholder="Todo" [(ngModel)]="newTask.title" #newTaskInput>
           <button [disabled]="!form.checkValidity()" class="button button-primary">+</button>
         </div>
-        <div *ngIf="newTask.invalid && (newTask.touched || newTask.dirty)" class="validation-error">
-          <div *ngIf="newTask.errors?.['required']">Task title is required.</div>
-          <div *ngIf="newTask.errors?.['minlength']">At least 4 chars required.</div>
+        <div *ngIf="newTaskNgModel.invalid && (newTaskNgModel.touched ||newTaskNgModel.dirty)" class="validation-error">
+          <div *ngIf="newTaskNgModel.errors?.['required']">Task title is required.</div>
+          <div *ngIf="newTaskNgModel.errors?.['minlength']">At least 4 chars required.</div>
         </div>
       </form>
       <table>
